@@ -1,0 +1,5 @@
+<h1>About</h1>
+The TwitPic class provides full access to the read-only part of the TwitPic API due to browser security restrictions.
+
+<h1>Example Usage</h1>
+Load the EXAMPLE.html file in your browser to see some code examples, more coming soon.
