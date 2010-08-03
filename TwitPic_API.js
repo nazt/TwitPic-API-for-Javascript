@@ -1,3 +1,13 @@
+/*
+ * TwitPic API for Javascript
+ * Copyright 2010 Ryan LeFevre - @meltingice
+ *
+ * Licensed under the New BSD License, more info in LICENSE file
+ * included with this software.
+ *
+ * Source code is hosted at http://github.com/meltingice/TwitPic-API-for-Javascript
+ */
+ 
 /* Namespace the twitpic object for global access */
 twitpic = window.twitpic || {};
 
@@ -27,7 +37,6 @@ twitpic = window.twitpic || {};
 	 */
 	function init() {
 		if(conflict) jQuery.noConflict();
-			
 		load(twitpic, jQuery);
 	}
 	
@@ -73,32 +82,106 @@ twitpic = window.twitpic || {};
 			}
 		}
 		
-		/*
-		 * media/show
-		 * Required:
-		 *		id - The short ID of the image
-		 */
 		 twitpic.media = {
+		 	/*
+			 * media/show
+			 * Required:
+			 *		id - The short ID of the image
+			 */
 		 	show : function(args, callback) {
 		 		API.validate(args, ['id']);
 		 		API.query('2/media/show', args, callback);
 		 	}
 		 };
 		
-		/*
-		 * users/show
-		 * Required:
-		 *		username - username of the user to get info for
-		 * Optional
-		 *		page - user photo pagination
-		 */
 		twitpic.users = {
+			/*
+			 * users/show
+			 * Required:
+			 *		username - username of the user to get info for
+			 * Optional
+			 *		page - user photo pagination
+			 */
 			show : function(args, callback) {
 				API.validate(args, ['username']);
 				API.query('2/users/show', args, callback);
 			}
 		};
 		
+		twitpic.comments = {
+			/*
+			 * comments/show
+			 * Required:
+			 *		media_id - The short ID of the image
+			 *		page - Comment pagination
+			 */
+			show : function(args, callback) {
+				API.validate(args, ['media_id', 'page']);
+				API.query('2/comments/show', args, callback);
+			}
+		};
+		
+		twitpic.place = {
+			/*
+			 * place/show
+			 * Required:
+			 *		id - The ID of the place
+			 * Optional:
+			 *		user - restrict photos to this username
+			 */
+			show : function(args, callback) {
+				API.validate(args, ['id']);
+				API.query('2/place/show', args, callback);
+			}
+		};
+		
+		twitpic.places = {
+			/*
+			 * places/show
+			 * Required:
+			 *		user - the username of the user
+			 */
+			show : function(args, callback) {
+				API.validate(args, ['user']);
+				API.query('2/places/show', args, callback);
+			}
+		};
+		
+		twitpic.events = {
+			/*
+			 * events/show
+			 * Required:
+			 *		user - the username of the user
+			 */
+			show : function(args, callback) {
+				API.validate(args, ['user']);
+				API.query('2/events/show', args, callback);
+			}
+		};
+		
+		twitpic.event = {
+			/*
+			 * event/show
+			 * Required:
+			 *		id - the short ID of the event
+			 */
+			show : function(args, callback) {
+				API.validate(args, ['id']);
+				API.query('2/event/show', args, callback);
+			}
+		};
+		
+		twitpic.tags = {
+			/*
+			 * tags/show
+			 * Required:
+			 *		tag - The tag to search for, or a comma separated list of tags
+			 */
+			show : function(args, callback) {
+				API.validate(args, ['tag']);
+				API.query('2/tags/show', args, callback);
+			}
+		};
 	}
 	
 })(window);
