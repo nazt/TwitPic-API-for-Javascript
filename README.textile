@@ -1,5 +1,0 @@
-<h1>About</h1>
-The TwitPic class provides full access to the read-only part of the TwitPic API due to browser security restrictions. If you need write access to the API, you may want to check out the <a href="http://github.com/meltingice/TwitPic-API-for-PHP">TwitPic API for PHP</a> project.
-
-<h1>Example Usage</h1>
-Load the EXAMPLE.html file in your browser to see some code examples, more coming soon.
