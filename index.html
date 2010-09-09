@@ -12,23 +12,23 @@
 	<script type="text/javascript">
 	SyntaxHighlighter.all()
 	
-	
-	twitpic.media.show({'id':'28ymi7'}, function(media) {
-		$("#media_show").html('<img src="http://twitpic.com/show/thumb/'+media.short_id+'" />');
+	twitpic.ready(function() {
+		twitpic.media.show({'id':'28ymi7'}, function(media) {
+			$("#media_show").html('<img src="http://twitpic.com/show/thumb/'+media.short_id+'" />');
+		});
+		
+		twitpic.users.show({'username':'meltingice'}, function(user) {
+			for(var i=0; i < 5; i++) {
+				$("#users_show").append('<img src="http://twitpic.com/show/thumb/'+user.images[i].short_id+'" />&nbsp;')
+			}
+		});
+		
+		twitpic.tags.show({'tag':'weather'}, function(tags) {
+			for(var i=0; i < 5; i++) {
+				$("#tags_show").append('<img src="http://twitpic.com/show/thumb/'+tags.images[i].short_id+'" />&nbsp;')
+			}
+		});
 	});
-
-	twitpic.users.show({'username':'meltingice'}, function(user) {
-		for(var i=0; i < 5; i++) {
-			$("#users_show").append('<img src="http://twitpic.com/show/thumb/'+user.images[i].short_id+'" />&nbsp;')
-		}
-	});
-	
-	twitpic.tags.show({'tag':'weather'}, function(tags) {
-		for(var i=0; i < 5; i++) {
-			$("#tags_show").append('<img src="http://twitpic.com/show/thumb/'+tags.images[i].short_id+'" />&nbsp;')
-		}
-	});
-	
 	</script>
 </head>
 <body>
@@ -36,8 +36,11 @@
 
 <h2>media/show</h2>
 <pre class="brush: js">
-twitpic.media.show({'id':'28ymi7'}, function(media) {
-	$("#media_show").html('&lt;img src="http://twitpic.com/show/thumb/'+media.short_id+'" /&gt;');
+// using twitpic.ready() is only required if you do not have jQuery already included in the page
+twitpic.ready(function() {
+	twitpic.media.show({'id':'28ymi7'}, function(media) {
+		$("#media_show").html('&lt;img src="http://twitpic.com/show/thumb/'+media.short_id+'" /&gt;');
+	});
 });
 </pre>
 
