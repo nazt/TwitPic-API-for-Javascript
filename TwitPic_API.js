@@ -14,6 +14,19 @@ twitpic = window.twitpic || {};
 (function(window) {
 
 	/*
+     * Solves the race-condition that occurs
+     * when loading jQuery automatically. This event is fired
+     * when the entire TwitPic script is finished loading.
+     */
+    var is_ready, ready_callback;
+    twitpic.ready = function(callback) {
+    	if(is_ready)
+    		callback();
+    	else
+    		ready_callback = callback;
+    }
+
+	/*
 	 * If jQuery hasn't been loaded already, lets
 	 * do so now automatically.
 	 */
@@ -80,7 +93,7 @@ twitpic = window.twitpic || {};
 					}
 				});
 			}
-		}
+		};
 		
 		 twitpic.media = {
 		 	/*
@@ -182,6 +195,10 @@ twitpic = window.twitpic || {};
 				API.query('2/tags/show', args, callback);
 			}
 		};
+		
+		is_ready = true;
+		if(ready_callback) ready_callback();
+		
 	}
 	
 })(window);
